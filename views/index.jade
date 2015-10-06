@@ -1,5 +1,25 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .container
+    .row
+      .page-header 
+        h1 Showing People
+      if(people)
+        while message = flash.shift()
+          .alert.alert-dismissible.alert-info
+            button(type="button", class="close", data-dismiss="alert") x
+            = message.message
+        table.table.table-striped
+            thead
+              tr
+                th Name
+                th Hobby
+            tbody
+              for person in people
+                tr
+                  td= person.name
+                  td= person.hobby
+        a.btn.btn-primary.btn-large(href='/people/new') Add Person
+      if(!people)
+        a.btn.btn-primary.btn-large(href='/people/new') Add Person  

@@ -1,6 +1,11 @@
-extends layout
-
-block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+while message = flash.shift()
+  .panel.panel-danger
+    .panel-heading
+      h3.panel-title= message.message
+    .panel-body
+      ul
+      for error in errors
+        li.text-danger= error
+    
+    
+    
